@@ -1,0 +1,42 @@
+[
+  {
+    "title": "腾讯视频",
+    "icon": "tengxun.ico",
+    "url": "https://v.qq.com/"
+  },
+  {
+    "title": "爱奇艺",
+    "icon": "aiqiyi.png",
+    "url": "https://www.iqiyi.com/"
+  },
+  {
+    "title": "优酷",
+    "icon": "youku.png",
+    "url": "https://www.youku.com/"
+  },
+  {
+    "title": "斗鱼",
+    "icon": "dy.png",
+    "url": "https://www.douyu.com/"
+  },
+  {
+    "title": "Blibli",
+    "icon": "bilibili.png",
+    "url": "https://www.bilibili.com/"
+  },
+  {
+    "title": "淘宝",
+    "icon": "taobao.png",
+    "url": "https://www.taobao.com/"
+  },
+  {
+    "title": "京东",
+    "icon": "jd.png",
+    "url": "https://www.jd.com/"
+  },
+  {
+    "title": "6V",
+    "icon": "v6.ico",
+    "url": "https://www.hao6v.tv/"
+  }
+]
