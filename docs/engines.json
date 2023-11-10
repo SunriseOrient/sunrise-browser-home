@@ -1,0 +1,26 @@
+[
+    {
+        "name":"Bing",
+        "alIcon":"ali-bing",
+        "placeholder":"微软 Bing 搜索",
+        "api":"https://cn.bing.com/search?q=${query}"
+    },
+    {
+        "name":"Google",
+        "alIcon":"ali-Google1",
+        "placeholder":"Google 搜索",
+        "api":"https://www.google.com.hk/search?q=${query}"
+    },
+    {
+        "name":"Baidu",
+        "alIcon":"ali-baidu",
+        "placeholder":"百度一下，你就知道",
+        "api":"https://www.baidu.com/s?wd=${query}"
+    },
+    {
+        "name":"Zhihu",
+        "alIcon":"ali-zhihu",
+        "placeholder":"发现 - 知乎",
+        "api":"https://www.zhihu.com/search?q=${query}&type=content"
+    }
+]
