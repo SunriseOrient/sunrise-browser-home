@@ -30,7 +30,7 @@ export default {
       if (!this.navigations.length) await this.loadNavigations();
     },
     loadNavigations() {
-      return fetch("./navigations.json")
+      return fetch("/navigations.json")
         .then((response) => response.json())
         .then((data) => {
           if (Array.isArray(data)) {
