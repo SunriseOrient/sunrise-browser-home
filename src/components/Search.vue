@@ -5,7 +5,7 @@
       {{engine.name}}
     </div>
     <div class="input">
-      <el-input size="large" v-model="query" :placeholder="engine.placeholder">
+      <el-input size="large" v-model="query" :placeholder="engine.placeholder" @keyup.enter="handleQuery">
         <template #append>
           <div class="search-append">
             <el-dropdown size="large" trigger="click" @command="engineChange">
