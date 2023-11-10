@@ -50,7 +50,7 @@ export default {
       this.loadCache();
     },
     loadEngines() {
-      return fetch("/engines.json")
+      return fetch("./engines.json")
         .then((response) => response.json())
         .then((data) => {
           if (Array.isArray(data)) {
