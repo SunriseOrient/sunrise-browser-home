@@ -1,0 +1,34 @@
+[
+  {
+    "title": "腾讯视频",
+    "url": "https://v.qq.com/"
+  },
+  {
+    "title": "爱奇艺",
+    "url": "https://www.iqiyi.com/"
+  },
+  {
+    "title": "优酷",
+    "url": "https://www.youku.com/"
+  },
+  {
+    "title": "斗鱼",
+    "url": "https://www.douyu.com/"
+  },
+  {
+    "title": "Blibli",
+    "url": "https://www.bilibili.com/"
+  },
+  {
+    "title": "淘宝",
+    "url": "https://www.taobao.com/"
+  },
+  {
+    "title": "京东",
+    "url": "https://www.jd.com/"
+  },
+  {
+    "title": "6V",
+    "url": "https://www.hao6v.tv/"
+  }
+]
