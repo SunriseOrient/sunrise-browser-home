@@ -26,8 +26,12 @@ export default {
   },
   methods: {
     async init() {
-      this.loadLocaNavigations();
-      if (!this.navigations.length) await this.loadNavigations();
+      const navigations = this.loadLocaNavigations();
+      if (navigations) {
+        this.navigations = navigations;
+        return;
+      }
+      await this.loadNavigations();
     },
     loadNavigations() {
       return fetch("./navigations.json")
@@ -41,11 +45,13 @@ export default {
     loadLocaNavigations() {
       const navigationsString = localStorage.getItem(LOCA_NAVIGATIONS);
       if (!navigationsString) return;
+      let navigations = null;
       try {
-        this.navigations = JSON.parse(navigationsString);
+        navigations = JSON.parse(navigationsString);
       } catch (error) {
         localStorage.removeItem(LOCA_NAVIGATIONS);
       }
+      return navigations;
     },
     handleGo(navigation) {
       if (!navigation.url) return;
