@@ -26,12 +26,19 @@ fi
 echo "生产目录: $PRODUCTION"
 echo "备份目录: $PRODUCTION_BACKUP"
 
+# 步骤1: 安装依赖
+echo "========================================="
+echo "步骤1: 安装依赖"
 npm install
+
+# 步骤2: 构建项目
+echo "=========================================" 
+echo "步骤2: 构建项目"
 npm run build
 
-# 步骤1: 打包 $DIST_DIR 文件夹下的所有内容为 $PROJECT_DIR.tar.gz
+# 步骤3: 打包 $DIST_DIR 文件夹下的所有内容为 $PROJECT_DIR.tar.gz
 echo "=========================================" 
-echo "步骤1: 打包 $DIST_DIR 文件夹"
+echo "步骤3: 打包 $DIST_DIR 文件夹"
 
 if [ ! -d "$DIST_DIR" ]; then
     echo "❌ 错误: $DIST_DIR 文件夹不存在"
@@ -52,16 +59,16 @@ fi
 echo "✅ 打包完成: $PROJECT_DIR.tar.gz"
 echo "文件大小: $(du -h $PROJECT_DIR.tar.gz | cut -f1)"
 
-# 步骤2: 检查 $PRODUCTION 文件夹下是否存在 $PROJECT_DIR 文件夹
+# 步骤4: 检查 $PRODUCTION 文件夹下是否存在 $PROJECT_DIR 文件夹
 echo "=========================================" 
-echo "步骤2: 检查 $PROJECT_DIR 文件夹"
+echo "步骤4: 检查 $PROJECT_DIR 文件夹"
 
 if [ -d "$PRODUCTION/$PROJECT_DIR" ]; then
     echo "✅ 找到 $PROJECT_DIR 文件夹，准备备份"
     
-    # 步骤3: 如果存在则备份并删除
+    # 步骤5: 如果存在则备份并删除
     echo "========================================="
-    echo "步骤3: 备份 $PROJECT_DIR 文件夹"
+    echo "步骤5: 备份 $PROJECT_DIR 文件夹"
     
     # 检查备份目录是否存在，不存在则创建
     if [ ! -d "$PRODUCTION_BACKUP" ]; then
@@ -97,9 +104,9 @@ else
     echo "ℹ️  $PROJECT_DIR 文件夹不存在，跳过备份步骤"
 fi
 
-# 步骤4: 移动、解压新包并清理
+# 步骤6: 移动、解压新包并清理
 echo "========================================="
-echo "步骤4: 部署新版本"
+echo "步骤6: 部署新版本"
 
 # 确保生产目录存在
 if [ ! -d "$PRODUCTION" ]; then
