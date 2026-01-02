@@ -5,6 +5,12 @@ set +x
 # 设置脚本执行模式：遇到错误退出
 set -e
 
+# 统一工作目录到项目根
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$ROOT_DIR"
+echo "已切换到工作目录: $ROOT_DIR"
+
 # 定义变量
 DIST_DIR="docs"
 PROJECT_DIR="sunrise-browser-home"
@@ -48,7 +54,7 @@ fi
 # 进入 $DIST_DIR 目录并打包
 cd "$DIST_DIR"
 echo "正在打包 $DIST_DIR 目录内容..."
-tar -czf ../$PROJECT_DIR.tar.gz .
+tar -czf "../$PROJECT_DIR.tar.gz" .
 cd ..
 
 if [ ! -f "$PROJECT_DIR.tar.gz" ]; then
@@ -83,7 +89,7 @@ if [ -d "$PRODUCTION/$PROJECT_DIR" ]; then
     # 压缩 $PROJECT_DIR 文件夹
     echo "正在压缩 $PROJECT_DIR 文件夹为备份文件..."
     cd "$PRODUCTION"
-    tar -czf "$BACKUP_NAME" $PROJECT_DIR/
+    tar -czf "$BACKUP_NAME" "$PROJECT_DIR/"
     echo "移动备份文件到备份目录..."
     mv "$BACKUP_NAME" "$PRODUCTION_BACKUP/"
     
@@ -116,7 +122,7 @@ fi
 
 # 移动压缩包到生产目录
 echo "移动 $PROJECT_DIR.tar.gz 到生产目录..."
-mv $PROJECT_DIR.tar.gz "$PRODUCTION/"
+mv "$PROJECT_DIR.tar.gz" "$PRODUCTION/"
 
 # 进入生产目录
 cd "$PRODUCTION"
@@ -127,7 +133,7 @@ mkdir -p "$PROJECT_DIR"
 
 # 解压压缩包到项目目录
 echo "正在解压 $PROJECT_DIR.tar.gz 到 $PROJECT_DIR 文件夹..."
-tar -xzf $PROJECT_DIR.tar.gz -C "$PROJECT_DIR"
+tar -xzf "$PROJECT_DIR.tar.gz" -C "$PROJECT_DIR"
 
 # 检查解压后的内容
 echo "解压后的文件和文件夹:"
