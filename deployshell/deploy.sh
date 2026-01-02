@@ -76,9 +76,10 @@ if [ -d "$PRODUCTION/$PROJECT_DIR" ]; then
         mkdir -p "$PRODUCTION_BACKUP"
     fi
     
-    # 创建时间戳，用于备份文件名
-    TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_NAME="${PROJECT_DIR}_back_${TIMESTAMP}.tar.gz"
+    # 固定备份文件名，仅保留最新一次
+    BACKUP_NAME="${PROJECT_DIR}_backup.tar.gz"
+    echo "清理旧备份（如有）..."
+    rm -f "$PRODUCTION_BACKUP/$BACKUP_NAME"
     
     # 压缩 $PROJECT_DIR 文件夹
     echo "正在压缩 $PROJECT_DIR 文件夹为备份文件..."
@@ -137,7 +138,7 @@ ls -la "$PROJECT_DIR"
 
 # 删除压缩包
 echo "删除压缩包 $PROJECT_DIR.tar.gz..."
-rm -f $PROJECT_DIR.tar.gz
+rm -f "$PROJECT_DIR.tar.gz"
 
 # 验证部署结果
 echo "========================================="
@@ -166,7 +167,7 @@ echo "备份目录 ($PRODUCTION_BACKUP):"
 if [ -d "$PRODUCTION_BACKUP" ]; then
     du -sh "$PRODUCTION_BACKUP"
     echo "备份文件列表:"
-    ls -lh "$PRODUCTION_BACKUP"/${PROJECT_DIR}_back_*.tar.gz 2>/dev/null || echo "暂无备份文件"
+    ls -lh "$PRODUCTION_BACKUP"/${PROJECT_DIR}_backup.tar.gz 2>/dev/null || echo "暂无备份文件"
 fi
 
 echo "========================================="
