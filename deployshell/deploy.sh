@@ -88,10 +88,12 @@ if [ -d "$PRODUCTION/$PROJECT_DIR" ]; then
     
     # 压缩 $PROJECT_DIR 文件夹
     echo "正在压缩 $PROJECT_DIR 文件夹为备份文件..."
-    cd "$PRODUCTION"
-    tar -czf "$BACKUP_NAME" "$PROJECT_DIR/"
-    echo "移动备份文件到备份目录..."
-    mv "$BACKUP_NAME" "$PRODUCTION_BACKUP/"
+    (
+        cd "$PRODUCTION"
+        tar -czf "$BACKUP_NAME" "$PROJECT_DIR/"
+        echo "移动备份文件到备份目录..."
+        mv "$BACKUP_NAME" "$PRODUCTION_BACKUP/"
+    )
     
     echo "✅ 备份完成: $PRODUCTION_BACKUP/$BACKUP_NAME"
     echo "备份文件大小: $(du -h $PRODUCTION_BACKUP/$BACKUP_NAME | cut -f1)"
