@@ -116,7 +116,7 @@ cd "$PRODUCTION"
 
 # 解压压缩包
 echo "正在解压 $PROJECT_DIR.tar.gz..."
-tar -xzf $PROJECT_DIR.tar.gz
+tar -xzf $PROJECT_DIR.tar.gz -C "$PROJECT_DIR" --no-overwrite-dir
 
 # 检查解压后的内容
 echo "解压后的文件和文件夹:"
