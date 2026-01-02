@@ -1,9 +1,9 @@
 #!/bin/bash
 
+# 关闭调试模式
+{ set +x; } 2>/dev/null
 # 设置脚本执行模式：遇到错误退出
 set -e
-# 设置脚本以显示每个命令（调试模式）
-set -x
 
 # 定义变量
 DIST_DIR="docs"
