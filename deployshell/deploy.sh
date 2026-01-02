@@ -5,12 +5,6 @@ set +x
 # 设置脚本执行模式：遇到错误退出
 set -e
 
-# 统一工作目录到项目根
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-cd "$ROOT_DIR"
-echo "已切换到工作目录: $ROOT_DIR"
-
 # 定义变量
 DIST_DIR="docs"
 PROJECT_DIR="sunrise-browser-home"
