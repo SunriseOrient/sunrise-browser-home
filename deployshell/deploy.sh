@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 关闭调试模式
-{ set +x; } 2>/dev/null
+set +x
 # 设置脚本执行模式：遇到错误退出
 set -e
 
