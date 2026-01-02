@@ -114,28 +114,51 @@ mv $PROJECT_DIR.tar.gz "$PRODUCTION/"
 # 进入生产目录
 cd "$PRODUCTION"
 
-# 解压压缩包
-echo "正在解压 $PROJECT_DIR.tar.gz..."
-tar -xzf $PROJECT_DIR.tar.gz -C "$PROJECT_DIR" --no-overwrite-dir
+# 创建项目目录（如果不存在）
+echo "创建项目目录 $PROJECT_DIR..."
+mkdir -p "$PROJECT_DIR"
+
+# 解压压缩包到项目目录
+echo "正在解压 $PROJECT_DIR.tar.gz 到 $PROJECT_DIR 文件夹..."
+tar -xzf $PROJECT_DIR.tar.gz -C "$PROJECT_DIR"
 
 # 检查解压后的内容
 echo "解压后的文件和文件夹:"
-ls -la
-
-# 如果解压后没有 $PROJECT_DIR 文件夹，创建一个
-if [ ! -d "$PROJECT_DIR" ]; then
-    echo "ℹ️  解压后没有 $PROJECT_DIR 文件夹，创建 $PROJECT_DIR 文件夹..."
-    mkdir $PROJECT_DIR
-    # 将解压的内容移动到 $PROJECT_DIR 文件夹
-    echo "将文件移动到 $PROJECT_DIR 文件夹..."
-    shopt -s extglob  # 启用扩展模式
-    mv !($PROJECT_DIR) $PROJECT_DIR/ 2>/dev/null || true
-    shopt -u extglob  # 禁用扩展模式
-fi
+ls -la "$PROJECT_DIR"
 
 # 删除压缩包
 echo "删除压缩包 $PROJECT_DIR.tar.gz..."
 rm -f $PROJECT_DIR.tar.gz
+
+# 验证部署结果
+echo "========================================="
+echo "部署验证:"
+
+if [ -d "$PROJECT_DIR" ]; then
+    echo "✅ $PROJECT_DIR 文件夹已创建"
+    echo "$PROJECT_DIR 文件夹内容:"
+    ls -la "$PROJECT_DIR/" | head -10
+    
+    # 统计文件数量
+    FILE_COUNT=$(find "$PROJECT_DIR/" -type f | wc -l)
+    echo "$PROJECT_DIR 中包含 $FILE_COUNT 个文件"
+else
+    echo "❌ 错误: $PROJECT_DIR 文件夹未创建"
+    exit 1
+fi
+
+# 显示磁盘使用情况
+echo "========================================="
+echo "磁盘使用情况:"
+echo "生产目录 ($PRODUCTION):"
+du -sh "$PRODUCTION"
+
+echo "备份目录 ($PRODUCTION_BACKUP):"
+if [ -d "$PRODUCTION_BACKUP" ]; then
+    du -sh "$PRODUCTION_BACKUP"
+    echo "备份文件列表:"
+    ls -lh "$PRODUCTION_BACKUP"/${PROJECT_DIR}_back_*.tar.gz 2>/dev/null || echo "暂无备份文件"
+fi
 
 echo "========================================="
 echo "✅ 部署完成!"
