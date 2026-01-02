@@ -109,7 +109,7 @@ fi
 
 # 移动压缩包到生产目录
 echo "移动 $PROJECT_DIR.tar.gz 到生产目录..."
-sudo mv $PROJECT_DIR.tar.gz "$PRODUCTION/"
+mv $PROJECT_DIR.tar.gz "$PRODUCTION/"
 
 # 进入生产目录
 cd "$PRODUCTION"
