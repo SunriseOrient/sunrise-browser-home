@@ -10,8 +10,8 @@
   <Navigation></Navigation>
 
   <div class="foot">
-    <p>© 2021 简语</p>
-    <p>{{speech}}</p>
+    <p>© 2026 简语</p>
+    <p>{{ speech }}</p>
     <div class="icons"><i class="iconfont ali-github"></i></div>
   </div>
 </template>
