@@ -65,12 +65,12 @@ export default {
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 30px 60px;
+  padding: 20px 30px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 28px;
+  font-size: 24px;
   color: var(--text-primary);
 
   .logo {
@@ -81,10 +81,19 @@ export default {
   .setting {
     color: var(--text-secondary);
   }
+
+  @media (max-width: 768px) {
+    padding: 15px 20px;
+    font-size: 20px;
+  }
 }
 
 .search-component {
   margin-bottom: 60px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 40px;
+  }
 }
 
 .foot {
@@ -92,9 +101,9 @@ export default {
   bottom: 0;
   width: 100%;
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
-  padding: 40px 0 60px 0;
+  padding: 40px 0 50px 0;
 
   .icons {
     margin-top: 20px;
@@ -103,6 +112,10 @@ export default {
 
   & > p {
     margin: 10px 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 0 20px 0;
   }
 }
 </style>

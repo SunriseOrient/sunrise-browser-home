@@ -96,6 +96,7 @@ export default {
     margin-bottom: 24px;
 
     .iconfont {
+      display: inline-flex;
       font-size: 48px;
       color: var(--text-primary);
     }
@@ -128,7 +129,12 @@ export default {
     transition: all 0.2s;
 
     .iconfont {
+      display: inline-flex;
       font-size: 16px;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
 
     &.active {
