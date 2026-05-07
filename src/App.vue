@@ -71,28 +71,34 @@ export default {
   justify-content: space-between;
   align-items: center;
   font-size: 28px;
+  color: var(--text-primary);
 
   .logo {
-    font-family: "微软雅黑,Helvetica";
+    font-family: "Microsoft YaHei", Inter, Helvetica;
     font-weight: 700;
+  }
+
+  .setting {
+    color: var(--text-secondary);
   }
 }
 
 .search-component {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .foot {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: #666;
+  color: var(--text-secondary);
   font-size: 14px;
   text-align: center;
   padding: 40px 0 60px 0;
 
   .icons {
     margin-top: 20px;
+    color: var(--text-muted);
   }
 
   & > p {

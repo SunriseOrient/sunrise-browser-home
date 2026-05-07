@@ -5,6 +5,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  // Dark theme colors
+  --bg-primary: #131313;
+  --bg-surface: #1c1b1b;
+  --bg-surface-high: #2a2a2a;
+  --bg-surface-highest: #353534;
+  --text-primary: #ffffff;
+  --text-secondary: #c4c7c8;
+  --text-muted: #8e9192;
+  --accent-blue: #0078d4;
+  --border-subtle: rgba(68, 71, 72, 0.5);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html,
@@ -24,8 +39,12 @@ body,
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  color: #303133;
+  color: var(--text-primary);
   position: relative;
-  font-family: "微软雅黑,Helvetica";
-  background-color: #f7f7f7;
+  font-family: "Microsoft YaHei", Inter, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+}
+
+::placeholder {
+  color: rgba(196, 199, 200, 0.4);
 }

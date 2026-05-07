@@ -77,16 +77,22 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     transition: all 0.3s;
     cursor: pointer;
     font-size: 12px;
-    background-color: #fff;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+
     &:hover {
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
       transform: scale(1.05);
+      background-color: var(--bg-surface-high);
+      color: var(--text-primary);
     }
+
     img {
       margin-bottom: 4px;
       width: 32px;

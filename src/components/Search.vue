@@ -2,29 +2,28 @@
   <div id="search">
     <div class="name">
       <i class="iconfont" :class="engine.alIcon"></i>
-      {{engine.name}}
+    </div>
+    <div class="engine-switcher">
+      <button
+        v-for="item in engines"
+        :key="item.name"
+        :class="['engine-btn', { active: engine.name === item.name }]"
+        @click="engineChange(item)"
+      >
+        <i class="iconfont" :class="item.alIcon"></i>
+        {{ item.name }}
+      </button>
     </div>
     <div class="input">
-      <el-input size="large" v-model="query" :placeholder="engine.placeholder" @keyup.enter="handleQuery">
-        <template #append>
-          <div class="search-append">
-            <el-dropdown size="large" trigger="click" @command="engineChange">
-              <div class="search-engine">
-                <span>.{{engine.name}}</span>
-                <i-ep-arrow-down class="icon" />
-              </div>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item v-for="item in engines" :key="item.name" :command="item">{{item.name}}</el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-            <div class="search-btn" @click="handleQuery">
-              <i-ep-search />
-            </div>
-          </div>
-        </template>
-      </el-input>
+      <input
+        class="search-input"
+        v-model="query"
+        :placeholder="engine.placeholder"
+        @keyup.enter="handleQuery"
+      />
+      <div class="search-btn" @click="handleQuery">
+        <i-ep-search />
+      </div>
     </div>
   </div>
 </template>
@@ -91,55 +90,106 @@ export default {
 #search {
   width: 80%;
   max-width: 760px;
-  .name {
-    margin-bottom: 80px;
 
+  .name {
     text-align: center;
-    font-size: 42px;
-    height: 50px;
-    line-height: 50px;
-    font-family: "微软雅黑,Helvetica";
+    margin-bottom: 24px;
 
     .iconfont {
       font-size: 48px;
-      margin-right: 5px;
+      color: var(--text-primary);
     }
   }
-  .input {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-    .el-input-group__append {
-      padding: 0;
-      background-color: #fff;
+
+  .engine-switcher {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background-color: var(--bg-surface-high);
+    border-radius: 9999px;
+    margin-bottom: 40px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .engine-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    .iconfont {
+      font-size: 16px;
     }
-    .search-append {
-      display: flex;
-      height: 100%;
 
-      .search-engine {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        cursor: pointer;
-        .icon {
-          margin-left: 10px;
-        }
+    &.active {
+      background-color: var(--text-primary);
+      color: var(--bg-primary);
+    }
+
+    &:not(.active):hover {
+      color: var(--text-primary);
+    }
+  }
+
+  .input {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    overflow: visible;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    &:focus-within {
+      border-color: var(--accent-blue);
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 16px 50px 16px 20px;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 16px;
+      outline: none;
+      border-radius: 12px;
+
+      &::placeholder {
+        color: var(--text-muted);
       }
+    }
 
-      .search-btn {
-        width: 80px;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
+    .search-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      color: #fff;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 50%;
+      transition: all 0.2s;
 
-        background-color: #0078d4;
-        color: #fff;
-
-        font-size: 21px;
+      &:hover {
+        background-color: var(--bg-surface-high);
+        color: var(--text-primary);
       }
     }
   }
